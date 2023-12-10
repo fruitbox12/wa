@@ -1,0 +1,125 @@
+---
+nodes:
+- width: 500
+  height: 84
+  id: scheduler_0
+  position:
+    x: 221.31248656824283
+    y: 82.59986639201699
+  type: customNode
+  data:
+    label: Scheduler
+    name: scheduler
+    type: trigger
+    inputAnchors: []
+    outputAnchors:
+    - id: scheduler_0-output-0
+    selected: false
+    inputParameters:
+      pattern: repetitive
+      scheduleTimes:
+      - mode: everyX
+        specificDateTime: ''
+        hour: 7
+        minute: 44
+        dayOfMonth: 10
+        weekday: '2'
+        value: '1'
+        unit: minutes
+      submit:
+  selected: false
+  positionAbsolute:
+    x: 221.31248656824283
+    y: 82.59986639201699
+  dragging: false
+- width: 500
+  height: 84
+  id: emailSend_0
+  position:
+    x: 1739.898510345031
+    y: 87.75488077025733
+  type: customNode
+  data:
+    label: Send Email
+    name: emailSend
+    type: action
+    inputAnchors:
+    - id: emailSend_0-input-0
+    outputAnchors:
+    - id: emailSend_0-output-0
+    selected: false
+    inputParameters:
+      fromEmail: ''
+      toEmail: ''
+      ccEmail: ''
+      subject: ''
+      text: ''
+      html: ''
+      ignoreSSL: ''
+      submit:
+    credentials:
+      credentialMethod: emailSendSmtp
+      submit:
+  selected: false
+  dragging: false
+  positionAbsolute:
+    x: 1739.898510345031
+    y: 87.75488077025733
+- width: 500
+  height: 84
+  id: openAI_0
+  position:
+    x: 967.1720842853683
+    y: 83.8328197164027
+  type: customNode
+  data:
+    label: OpenAI
+    name: openAI
+    type: action
+    inputAnchors:
+    - id: openAI_0-input-0
+    outputAnchors:
+    - id: openAI_0-output-0
+    selected: false
+    inputParameters:
+      model: gpt-3.5-turbo-0301
+      prompt: You are a sales representative at a software company, and you want to
+        reach out to a potential client who has recently shown interest in your product
+        at a tech conference. You have their contact information and some information
+        about their needs and interests that you gathered during the conference. Write
+        a personalized email to this potential client to further discuss how your
+        software can meet their specific needs and provide value to their business.  Please
+        keep the email professional and friendly, and make sure to reference the details
+        you collected during the conference. Your goal is to establish a connection,
+        showcase the benefits of your software, and request a follow-up call or meeting.  Feel
+        free to include any relevant details and information that you think will be
+        persuasive in winning this client over.
+      submit:
+    actions:
+      operation: chatgpt
+      submit:
+    credentials:
+      credentialMethod: emailSendSmtp
+      submit:
+  selected: false
+  dragging: false
+  positionAbsolute:
+    x: 967.1720842853683
+    y: 83.8328197164027
+edges:
+- source: scheduler_0
+  sourceHandle: scheduler_0-output-0
+  target: openAI_0
+  targetHandle: openAI_0-input-0
+  type: buttonedge
+  id: scheduler_0-scheduler_0-output-0-openAI_0-openAI_0-input-0
+  data:
+    label: ''
+- source: openAI_0
+  sourceHandle: openAI_0-output-0
+  target: emailSend_0
+  targetHandle: emailSend_0-input-0
+  type: buttonedge
+  id: openAI_0-openAI_0-output-0-emailSend_0-emailSend_0-input-0
+  data:
+    label: ''
